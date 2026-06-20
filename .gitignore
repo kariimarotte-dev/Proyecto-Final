@@ -1,0 +1,48 @@
+# Python - Archivos compilados que genera automáticamente
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+
+# Pytest - Caché de pruebas
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs - Archivos de registro
+logs/
+*.log
+*.logs
+
+# Reportes HTML - Se generan cada vez que corres pytest
+reporte.html
+assets/
+report.html
+
+# Entornos virtuales - Librerías instaladas (se reinstalan con requirements.txt)
+venv/
+env/
+.venv/
+.env
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs - Configuraciones personales
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp

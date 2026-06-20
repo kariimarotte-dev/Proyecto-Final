@@ -1,0 +1,11 @@
+{
+  "usuario_valido": {
+    "user": "admin ",
+    "pass": "admin 123!"
+  },
+  "usuario_invalido": {
+    "user": "usuario_fantasma",
+    "pass": "clave_erronea"
+  },
+  "producto_busqueda": "Clean Code"
+}
