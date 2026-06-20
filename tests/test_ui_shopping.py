@@ -1,6 +1,5 @@
 import pytest
 import json
-import time
 from pages.login_page import LoginPage
 from utils.logger import get_logger
 
