@@ -38,3 +38,14 @@ def test_api_get_all_products_exitoso():
     datos = respuesta.json()
     assert isinstance(datos['items'], list), "Error: La API no devolvió una lista de productos."
     assert len(datos['items']) > 0, "Error: La API no trajo productos"
+
+# TEST API2: Escenario positivo - Verificar un producto especifico por su id 
+def test_api_get_a_product_by_id():
+    api = ApiShoppingClient()
+    respuesta = api.get_product(1)
+
+    assert respuesta.status_code == 200, f"Error: No se pudo traer el producto 1. Codigo: {respuesta.status_code}"
+
+    datos = respuesta.json()
+    assert len(datos) > 0, "Error: el contenido del producto regresó vacio."
+    
