@@ -1,7 +1,7 @@
 {
   "usuario_valido": {
-    "user": "admin ",
-    "pass": "admin 123!"
+    "user": "admin",
+    "pass": "admin123"
   },
   "usuario_invalido": {
     "user": "usuario_fantasma",
