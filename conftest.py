@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from datetime import datetime 
 
 # FIXTURE 1: Driver de Selenium
 @pytest.fixture
@@ -54,3 +55,26 @@ def users_data():
             "name": "Admin User",
             "createdAt": "2026-01-01T00:00:00.000Z"
     }
+
+# para capturar screenshot
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    # 1. Ejecutar el test normalmente
+    outcome = yield
+    report = outcome.get_result()
+    
+    # 2. Verificar si el test FALLÓ
+    if report.when == "call" and report.failed:
+        # 3. Intentar obtener el driver del test
+        driver = item.funcargs.get('driver')
+        
+    # 4. Si hay driver (test de UI), capturar screenshot
+    if driver:
+    # 5. Crear nombre descriptivo con fecha/hora
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        test_name = item.name
+        screenshot_name = f"screenshots/{test_name}_FAILED_{timestamp}.png"
+            
+    # 6. Guardar el screenshot
+        driver.save_screenshot(screenshot_name)
+        print(f"\n📸 Screenshot guardado: {screenshot_name}")
