@@ -68,13 +68,14 @@ def pytest_runtest_makereport(item, call):
         # 3. Intentar obtener el driver del test
         driver = item.funcargs.get('driver')
         
-    # 4. Si hay driver (test de UI), capturar screenshot
-    if driver:
-    # 5. Crear nombre descriptivo con fecha/hora
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        test_name = item.name
-        screenshot_name = f"screenshots/{test_name}_FAILED_{timestamp}.png"
-            
-    # 6. Guardar el screenshot
-        driver.save_screenshot(screenshot_name)
-        print(f"\n📸 Screenshot guardado: {screenshot_name}")
+        # 4. Si hay driver (test de UI), capturar screenshot
+        if driver:
+        # 5. Crear nombre descriptivo con fecha/hora
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            test_name = item.name
+            screenshot_name = f"screenshots/{test_name}_FAILED_{timestamp}.png"
+                
+        # 6. Guardar el screenshot
+            driver.save_screenshot(screenshot_name)
+            print(f"Screenshot guardado: {screenshot_name}")
+        
