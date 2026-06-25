@@ -1,0 +1,68 @@
+[
+        {
+            "id": "prod-018",
+            "name": "Design Patterns",
+            "description": "Elementos de software orientado a objetos reutilizable.",
+            "price": 49,
+            "stock": 2,
+            "category": "Books",
+            "imageUrl": "https://picsum.photos/seed/prod-018/400/300",
+            "active": true,
+            "createdAt": "2026-01-18T00:00:00.000Z"
+        },
+        {
+            "id": "prod-017",
+            "name": "Refactoring",
+            "description": "Mejora el diseño de código existente, por Martin Fowler.",
+            "price": 55,
+            "stock": 10,
+            "category": "Books",
+            "imageUrl": "https://picsum.photos/seed/prod-017/400/300",
+            "active": true,
+            "createdAt": "2026-01-17T00:00:00.000Z"
+        },
+        {
+            "id": "prod-016",
+            "name": "The Pragmatic Programmer",
+            "description": "Tu camino hacia la maestría como programador.",
+            "price": 45,
+            "stock": 10,
+            "category": "Books",
+            "imageUrl": "https://picsum.photos/seed/prod-016/400/300",
+            "active": true,
+            "createdAt": "2026-01-16T00:00:00.000Z"
+        },
+        {
+            "id": "prod-015",
+            "name": "Clean Code",
+            "description": "Manual de artesanía de software por Robert C. Martin.",
+            "price": 35,
+            "stock": 10,
+            "category": "Books",
+            "imageUrl": "https://picsum.photos/seed/prod-015/400/300",
+            "active": true,
+            "createdAt": "2026-01-15T00:00:00.000Z"
+        },
+        {
+            "id": "prod-014",
+            "name": "Leather Belt",
+            "description": "Cinturón de cuero genuino.",
+            "price": 39,
+            "stock": 15,
+            "category": "Clothing",
+            "imageUrl": "https://picsum.photos/seed/prod-014/400/300",
+            "active": true,
+            "createdAt": "2026-01-14T00:00:00.000Z"
+        },
+        {
+            "id": "prod-013",
+            "name": "Baseball Cap",
+            "description": "Gorra ajustable de algodón.",
+            "price": 25,
+            "stock": 30,
+            "category": "Clothing",
+            "imageUrl": "https://picsum.photos/seed/prod-013/400/300",
+            "active": true,
+            "createdAt": "2026-01-13T00:00:00.000Z"
+        }
+    ]

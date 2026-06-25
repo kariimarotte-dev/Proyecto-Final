@@ -27,3 +27,11 @@ class ApiShoppingClient:
         """
         url_completa = f"{self.URL_BASE}/api/products/"
         return requests.get(url_completa)
+
+    def get_product(self, product_id):
+        """
+        Este método trae un producto específico por su ID.
+        Es similar a get_product_by_id pero con nombre más simple.
+        """
+        url_completa = f"{self.URL_BASE}/api/products/{product_id}"
+        return requests.get(url_completa)
