@@ -4,25 +4,25 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime 
 
-# FIXTURE 1: Driver de Selenium
+# FIXTURE 1: Servicio de ChromeDriver compartido entre todos los tests de la sesión
+@pytest.fixture(scope="session")
+def chrome_service():
+    return Service(ChromeDriverManager().install())
+
+
+# FIXTURE 2: Driver de Selenium
 @pytest.fixture
-def driver():
+def driver(chrome_service):
     """
     Crea y configura el navegador Chrome para los tests de UI.
     Se ejecuta antes de cada test y se cierra después.
+    Usa solo esperas explícitas (WebDriverWait) — sin implicit wait.
     """
-    # Instalar y configurar ChromeDriver automáticamente
-    servicio = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=servicio)
-    
-    # Configuraciones del navegador
+    driver = webdriver.Chrome(service=chrome_service)
     driver.maximize_window()
-    driver.implicitly_wait(10)
-    
-    # Entrega el driver al test
+
     yield driver
-    
-    # Cierra el navegador después del test
+
     driver.quit()
 
 
@@ -77,5 +77,4 @@ def pytest_runtest_makereport(item, call):
                 
         # 6. Guardar el screenshot
             driver.save_screenshot(screenshot_name)
-            print(f"Screenshot guardado: {screenshot_name}")
-        
+            print(f"\n📸 Screenshot guardado: {screenshot_name}")

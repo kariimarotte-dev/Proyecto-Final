@@ -35,6 +35,8 @@ def test_caso2_login_valido_exitoso(driver):
     login.iniciar_sesion(datos["usuario_valido"]["user"], datos["usuario_valido"]["pass"])
     
     # Validamos que ya no estemos atrapados en la URL de login
+    wait = WebDriverWait(driver, 10)
+    wait.until(lambda d: "login" not in d.current_url)
     assert "login" not in driver.current_url, "Error: No se pudo ingresar a la cuenta."
 
 # CASO 3: Flujo de navegación de productos
@@ -53,7 +55,7 @@ def test_caso3_buscar_producto_existente(driver):
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
     
-    wait = WebDriverWait(driver, 100)
+    wait = WebDriverWait(driver, 10)
     wait.until(lambda d: "search" in d.current_url or "query" in d.current_url)
     
     assert "search" in driver.current_url or "query" in driver.current_url, "Error: El buscador no actualizó la URL."
@@ -74,13 +76,13 @@ def test_caso4_agregar_productos_al_carrito(driver):
     
     # Añadimos el producto al carrito
     login.agregar_primer_producto_al_carrito()
-    
-    # Esperamos a que el ícono del carrito esté presente y actualizado
-    wait = WebDriverWait(driver, 100)
-    icono_carrito = wait.until(EC.presence_of_element_located(login.icono_carrito))
-    
+
+    # Esperamos a que el badge del carrito aparezca con el contador real
+    wait = WebDriverWait(driver, 10)
+    badge = wait.until(EC.presence_of_element_located(login.badge_carrito))
+
     # Validamos que el carrito tenga al menos 1 elemento activo
-    assert "0" not in icono_carrito.text, "Error: El producto no se sumó al contador del carrito."
+    assert int(badge.text) >= 1, "Error: El producto no se sumó al contador del carrito."
 
 # CASO 5: Flujo completo - Checkout de compra exitoso
 
@@ -96,8 +98,10 @@ def test_caso5_flujo_de_checkout_completo(driver):
     login.ir_al_carrito_y_pagar()
 
     # Esperar dinámicamente a que aparezca el mensaje de compra
-    wait = WebDriverWait(driver, 100)
+    wait = WebDriverWait(driver, 10)
     wait.until(EC.presence_of_element_located(login.mensaje_exito_compra))
 
     mensaje_final = login.obtener_mensaje_compra_exitosa()
-    assert "gracias por tu compra" in mensaje_final.lower() or "pago exito" in mensaje_final.lower(), "Error: No se completó la compra exitosamente." 
+    assert "gracias por tu compra" in mensaje_final.lower() or "pago exitoso" in mensaje_final.lower(), "Error: No se completó la compra exitosamente." 
+	
+	
